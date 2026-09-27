@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { ProjectItem } from "../types/ProjectItem";
+
+import { getProjectsBySection, renderProjectMarkdown } from "../utils/projects";
+
+const sections: readonly {
+    section:  string;
+    slug:     string;
+    projects: ProjectItem[];
+}[] = getProjectsBySection();
+---
+
+<BaseLayout title="Projects">
+    <h1>projects</h1>
+
+    <div
+        class="section-nav"
+        id="top"
+    >
+        <span class="section-nav-title">jump to section:</span>
+        <div class="section-nav-links">
+            {
+                sections.map(
+                    (group: { section: string; slug: string; projects: ProjectItem[] }) => (
+                        <a href={`#${group.slug}`}># {group.section}</a>
+                    ),
+                )
+            }
+        </div>
+    </div>
+
+    {
+        sections.map((group: { section: string; slug: string; projects: ProjectItem[] }) => (
+            <section
+                class="project-section"
+                id={group.slug}
+            >
+                <h1># {group.section}</h1>
+                {group.projects.map((project: ProjectItem) => (
+                    <Fragment set:html={renderProjectMarkdown(project)} />
+                ))}
+                <p style="font-size: 0.85rem;">
+                    <a href="#top">&uarr; back to top</a>
+                </p>
+            </section>
+        ))
+    }
+</BaseLayout>

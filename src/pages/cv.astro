@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+    title="CV"
+    navPosition="side"
+>
+    <h1>curriculum vitae</h1>
+
+    <div class="cv-actions">
+        <span>download CV as pdf</span>
+        <a
+            href="/cv.pdf"
+            download
+            class="btn-download"
+            >download cv</a
+        >
+    </div>
+
+    <object
+        data="/cv.pdf"
+        type="application/pdf"
+        class="cv-embed"
+        aria-label="CV PDF Preview"
+    >
+        <p>
+            your browser does not support inline PDFs.
+            <a
+                href="/cv.pdf"
+                download
+                >download directly from here</a
+            >
+        </p>
+    </object>
+</BaseLayout>

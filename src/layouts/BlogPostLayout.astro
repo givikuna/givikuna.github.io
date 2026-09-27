@@ -1,0 +1,29 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+import type { BlogFrontmatter } from "../types/BlogFrontmatter";
+
+interface Props {
+    frontmatter: BlogFrontmatter;
+}
+
+const { frontmatter }: { frontmatter?: BlogFrontmatter } = Astro.props;
+---
+
+<BaseLayout
+    title={frontmatter.title}
+    description={frontmatter.description}
+>
+    <article>
+        <header>
+            <h1>{frontmatter.title}</h1>
+            <p style="color: var(--fg4); margin-top: -0.25rem;">
+                Published on <time datetime={frontmatter.pubDate}>{frontmatter.pubDate}</time>
+            </p>
+        </header>
+        <hr />
+        <slot />
+        <hr />
+        <p><a href="/blog/">&larr; Back to all blog posts</a></p>
+    </article>
+</BaseLayout>

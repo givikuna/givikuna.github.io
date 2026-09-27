@@ -1,0 +1,97 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { ProjectItem } from "../types/ProjectItem";
+
+import { renderProjectMarkdown } from "../utils/projects";
+import { sortPostsByDate, type BlogPostModule } from "../utils/blog";
+
+import { project_items } from "../data/projects";
+
+const featuredProjects: ReadonlyArray<ProjectItem> = project_items.slice(0, 2);
+
+const postImports: Record<string, BlogPostModule> = import.meta.glob<BlogPostModule>(
+    "./blog/*.md",
+    { eager: true },
+);
+const latestPosts: ReadonlyArray<BlogPostModule> = sortPostsByDate(
+    Object.values(postImports),
+).slice(0, 3);
+---
+
+<BaseLayout title="Home">
+    <section>
+        <h1>~/givikuna</h1>
+        <p>hello. welcome to my website. my name is givi.</p>
+        <p>
+            I'm a student at <a href="https://www.rutgers.edu/">rutgers</a>.
+        </p>
+        <p>
+            I major in <a href="https://math.rutgers.edu/">math</a> and <a
+                href="https://www.cs.rutgers.edu/">cs</a
+            >. and minor in <a href="https://physics.rutgers.edu/">math</a>
+        </p>
+    </section>
+
+    <hr />
+
+    <section>
+        <h2>featured</h2>
+        {
+            featuredProjects.map((project: ProjectItem) => (
+                <Fragment set:html={renderProjectMarkdown(project)} />
+            ))
+        }
+        <p><a href="/projects/">view all projects &rarr;</a></p>
+    </section>
+
+    <hr />
+
+    <section>
+        <h2>latest blog posts</h2>
+        {
+            latestPosts.length === 0 ? (
+                <p>no blog posts yet.</p>
+            ) : (
+                <ul>
+                    {latestPosts.map((post: BlogPostModule) => (
+                        <li>
+                            <a href={post.url}>{post.frontmatter.title}</a>
+                            <span style="color: var(--fg4);">
+                                {" "}
+                                &mdash; {post.frontmatter.pubDate}
+                            </span>
+                            <p style="margin: 0.2rem 0 0.75rem 0; color: var(--fg2);">
+                                {post.frontmatter.description}
+                            </p>
+                        </li>
+                    ))}
+                </ul>
+            )
+        }
+        <p>
+            <a href="/blog/">all posts &rarr;</a> &bull;{" "}
+            <a href="/rss.xml">rss feed</a>
+        </p>
+    </section>
+
+    <hr />
+
+    <section>
+        <h2>sitemap</h2>
+        <ul>
+            <li><a href="/">/home</a> &mdash; overview</li>
+            <li><a href="/projects/">/projects</a> &mdash; all projects</li>
+            <li><a href="/cv/">/cv</a> &mdash; curriculum vitae (PDF)</li>
+            <li><a href="/social/">/social</a> &mdash; social media</li>
+            <li><a href="/git/">/git</a> &mdash; git forges</li>
+            <li><a href="/open-source/">/open-source</a> &mdash; open source contributions</li>
+            <li>
+                <a href="/blog/">/blog</a> &mdash; articles/blog posts and (<a href="/rss.xml"
+                    >rss</a
+                >)
+            </li>
+            <li><a href="/uses/">/uses</a> &mdash; personal workflows and things I use</li>
+        </ul>
+    </section>
+</BaseLayout>

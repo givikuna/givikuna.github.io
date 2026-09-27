@@ -1,11 +1,16 @@
 {
-  "dependencies": {
-    "@astrojs/rss": "^4.0.19",
-    "astro": "^7.3.5",
-    "marked": "^18.0.14"
-  },
-  "devDependencies": {
-    "@huggingface/prettier-plugin-vertical-align": "^0.3.1",
-    "prettier-plugin-svelte": "^4.1.1"
-  }
+    "dependencies": {
+        "@astrojs/rss": "^4.0.19",
+        "astro": "^7.3.5",
+        "marked": "^18.0.14"
+    },
+    "devDependencies": {
+        "@huggingface/prettier-plugin-vertical-align": "^0.3.1",
+        "prettier-plugin-svelte": "^4.1.1"
+    },
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview"
+    }
 }

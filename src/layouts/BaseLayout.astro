@@ -1,0 +1,65 @@
+---
+import Navbar from "../components/Navbar.astro";
+import "../styles/global.css";
+
+interface Props {
+    title?:       string;
+    description?: string;
+    navPosition?: "top" | "side";
+    frontmatter?: {
+        title?:       string;
+        description?: string;
+    };
+}
+
+const {
+    title,
+    description = "Givi Tsvariani",
+    navPosition = "top",
+    frontmatter,
+}: {
+    title?:       string;
+    description?: string;
+    navPosition?: string;
+    frontmatter?: {
+        title?:       string;
+        description?: string;
+    };
+} = Astro.props;
+
+const pageTitle: string = frontmatter?.title ?? title ?? "Givi Tsvariani";
+const pageDesc: string = frontmatter?.description ?? description;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>{pageTitle} | Givi Tsvariani</title>
+        <meta
+            name="description"
+            content={pageDesc}
+        />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="givikuna's Blog RSS"
+            href="/rss.xml"
+        />
+    </head>
+    <body>
+        <div class={`layout-wrapper ${navPosition === "side" ? "nav-side" : ""}`}>
+            <Navbar />
+            <main>
+                <slot />
+            </main>
+        </div>
+        <footer>
+            <span>givikuna.github.io &mdash; static HTML &bull; <a href="/rss.xml">RSS</a></span>
+        </footer>
+    </body>
+</html>

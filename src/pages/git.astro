@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Git">
+    <h1>git repos:</h1>
+    <p>I host on these forges:</p>
+
+    <ul class="social-list">
+        <li>
+            <a
+                href="https://github.com/givikuna"
+                class="social-card"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    src="/icons/gh.png"
+                    alt="GitHub"
+                    width="30"
+                    height="30"
+                />
+                <div>
+                    <strong style="color: var(--yellow); display: block;"> github </strong>
+                    <span style="color: var(--fg4); font-size: 0.9rem;"> github.com/givikuna </span>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://codeberg.org/giviko"
+                class="social-card"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    src="/icons/git.png"
+                    alt="Codeberg"
+                    width="30"
+                    height="30"
+                />
+                <div>
+                    <strong style="color: var(--yellow); display: block;"> codeberg </strong>
+                    <span style="color: var(--fg4); font-size: 0.9rem;"> codeberg.org/giviko </span>
+                </div>
+            </a>
+        </li>
+    </ul>
+</BaseLayout>
