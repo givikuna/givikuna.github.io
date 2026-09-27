@@ -5,6 +5,7 @@ export default defineConfig({
     output: "static",
     outDir: "./docs",
     build:  {
-        format: "directory",
+        format:            "directory",
+        inlineStylesheets: "always",
     },
 });
