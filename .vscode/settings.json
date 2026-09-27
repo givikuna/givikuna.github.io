@@ -1,3 +1,20 @@
 {
-  "cSpell.words": ["direnv", "pkgs"]
+    "cSpell.words": [
+        "arkonavt",
+        "codeberg",
+        "direnv",
+        "FOSS",
+        "gitboy",
+        "huggingface",
+        "Loid",
+        "mwaune",
+        "nixfiles",
+        "nixtants",
+        "pkgs",
+        "purs",
+        "struktured",
+        "Tauri",
+        "typst",
+        "ynternals"
+    ]
 }
