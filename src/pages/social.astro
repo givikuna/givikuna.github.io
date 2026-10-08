@@ -1,40 +1,33 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
 import { SocialItem } from "../types/SocialItem";
-
 import { social_items } from "../data/social";
 ---
 
 <BaseLayout title="Social">
-    <h1>socials:</h1>
-    <p>where to find me:</p>
+    <h1>socials</h1>
+    <p>where to find me across the web:</p>
 
-    <ul class="social-list">
+    <div class="social-grid">
         {
             social_items.map((item: SocialItem) => (
-                <li>
-                    <a
-                        href={item.url}
-                        class="social-card"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <img
-                            src={`/icons/${item.icon}`}
-                            alt={item.platform}
-                            width="30"
-                            height="30"
-                        />
-                        <div>
-                            <strong style="color: var(--yellow); display: block;">
-                                {item.platform}
-                            </strong>
-                            <span style="color: var(--fg4); font-size: 0.9rem;">{item.handle}</span>
-                        </div>
-                    </a>
-                </li>
+                <a
+                    href={item.url}
+                    class="social-square"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img
+                        src={`/icons/${item.icon}`}
+                        alt={item.platform}
+                        loading="lazy"
+                    />
+                    <div class="social-text">
+                        <span class="platform-name">{item.platform}</span>
+                        <span class="platform-handle">{item.handle}</span>
+                    </div>
+                </a>
             ))
         }
-    </ul>
+    </div>
 </BaseLayout>

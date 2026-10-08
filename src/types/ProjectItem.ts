@@ -5,5 +5,6 @@ export interface ProjectItem {
     name:    string;
     stack:   StackOption[];
     desc:    string[];
+    summary: string;
     section: ProjectSection;
 }

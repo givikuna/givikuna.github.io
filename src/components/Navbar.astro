@@ -37,7 +37,7 @@ function isActive(href: string, current: string): boolean {
                         href={link.href}
                         class={isActive(link.href, pathname) ? "active" : ""}
                     >
-                        [{link.label}]
+                        {link.label}
                     </a>
                 </li>
             ))

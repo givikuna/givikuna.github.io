@@ -2,20 +2,8 @@ import { ProjectItem } from "../types/ProjectItem";
 
 export const project_items: ReadonlyArray<ProjectItem> = [
     // ============================================================
-    //                     FOSS COMPLETE
+    //                             PIN
     // ============================================================
-
-    {
-        name:    "loid",
-        stack:   ["Nix", "Rust", "git", "GitHub", "JavaScript", "Elvish", "BASH"],
-        desc:    [
-            'source code hosted on github at <a href="https://github.com/Loid-Project/loid/">https://github.com/Loid-Project/loid/</a>',
-            "multi-paradigm transpiled programming language with first-class types, functions, and classes",
-            "tightly integrates classes into the type system, allows for constrained types, runtime type checks, and pure functional programming",
-            "features a rich error management system with monadic data structures",
-        ],
-        section: "FOSS Complete",
-    },
 
     {
         name:    "nixfiles",
@@ -32,15 +20,75 @@ export const project_items: ReadonlyArray<ProjectItem> = [
             "Terraform",
             "Elvish",
         ],
+        summary: "Multi-host NixOS configuration with flakes & home manager",
         desc:    [
+            "Multi-host nixos configuration with flakes & home manager",
+            "Manages secrets, private and public servers, and various personal computers",
+            "Unit tests many parts of the operating systems through custom scripts",
+            "Many smaller custom scripts written in racket, perl, and python",
+            `Uses various self-made flakes such as <a href="https://github.com/givikuna/gitboy>">gitboy</a> for declarative git repository management and <a href="https://github.com/givikuna/nixtants">nixtants</a> for constants management`,
+            `Has a custom secrets management system through <a href="https://github.com/givikuna/ynternals">the ynternals flake</a>`,
+            "Currently in the process of using terraform to set up the cloud environment declaratively",
             'source code hosted on github at <a href="https://github.com/givikuna/nixfiles">https://github.com/givikuna/nixfiles</a>',
-            "multi-host nixos configuration with flakes & home manager",
-            "manages secrets, private and public servers, and various personal computers",
-            "unit tests many parts of the operating systems through custom scripts",
-            "many smaller custom scripts written in racket, perl, and python",
-            `uses various self-made flakes such as <a href="https://github.com/givikuna/gitboy>">gitboy</a> for declarative git repository management and <a href="https://github.com/givikuna/nixtants">nixtants</a> for constants management`,
-            `has a custom secrets management system through <a href="https://github.com/givikuna/ynternals">the ynternals flake</a>`,
-            "currently in the process of using terraform to set up the cloud environment declaratively",
+        ],
+        section: "FOSS Complete",
+    },
+
+    {
+        name:    "loid",
+        stack:   ["Nix", "Rust", "git", "GitHub", "JavaScript", "Elvish", "BASH"],
+        summary: "Multi-paradigm programming language implementing Martin-Löf into OOP",
+        desc:    [
+            "Multi-paradigm transpile-to-javascript language written in Rust",
+            "Loid tries to integrate a Martin-Löf type system into an OOP paradigm",
+            "Written in rust and managed via nix flakes",
+            "Designed to be batteries-included out of the box, with a large core library and many useful quirks",
+            'Source code hosted on github at <a href="https://github.com/Loid-Project/loid/">https://github.com/Loid-Project/loid/</a>',
+        ],
+        section: "FOSS in Progress",
+    },
+
+    // ============================================================
+    //                     FOSS COMPLETE
+    // ============================================================
+
+    {
+        name:    "Nixp",
+        stack:   ["Nix", "Odin", "BASH"],
+        summary:
+            "Lisp-inspired optionally-typed programming programming language that compiles to Nix",
+        desc:    [
+            "Lisp-inspired language that compiles to pure nix code",
+            "Useable for nix configurations and flakes",
+            "Optionally allows users to use a fully-featured (non Martin-Löf) type system for nix type-safety",
+            "Allows for modular and easy migration from nix",
+            "Written in Odin",
+            `Source code hosted on github at <a href="https://github.com/givikuna/nixp>https://github.com/givikuna/nixp</a>`,
+        ],
+        section: "FOSS Complete",
+    },
+
+    {
+        name:    "ynternals",
+        stack:   ["Nix", "BASH"],
+        summary: "Nix symmetric-key encrypted secrets management solution",
+        desc:    [
+            "A solution for managing secrets declaratively with symmetric keys in NixOS",
+            "Uses AES-256 for symmetrically encrypting secrets for Nix systems",
+            "Does not store the decrypted secrets in the world-readable nix store",
+            "Distributed via a Nix flake",
+            'Source code hosted on github at <a href="https://github.com/givikuna/ynternals">https://github.com/givikuna/ynternals</a>',
+        ],
+        section: "FOSS Complete",
+    },
+
+    {
+        name:    "nixtants",
+        stack:   ["Nix"],
+        summary: "A Nix free-form constants management flake",
+        desc:    [
+            "Clean and portable way to manage free-form structured constants for Nix configurations via flakes",
+            'Source code hosted on github at <a href="https://github.com/givikuna/nixtants">https://github.com/givikuna/nixtants</a>',
         ],
         section: "FOSS Complete",
     },
@@ -48,65 +96,4 @@ export const project_items: ReadonlyArray<ProjectItem> = [
     // ============================================================
     //                     FOSS in Progress
     // ============================================================
-
-    {
-        name:    "struktured",
-        stack:   ["NPM", "TypeScript", "JavaScript"],
-        desc:    [
-            `source code hosted on codeberg at <a href="https://codeberg.org/giviko/struktured">https://codeberg.org/giviko/struktured</a>`,
-            `npm package on npmjs.com at <a href="https://www.npmjs.com/package/struktured">https://www.npmjs.com/package/struktured</a>`,
-            "a library (work-in-progress) with various complex (and customizable) data structures",
-            "designed with extensibility in mind providing abstract classes, interfaces, bases, headers, and mixins (and lots of utilities to create custom mixins)",
-            "written primarily in typescript for npm",
-        ],
-        section: "FOSS in Progress",
-    },
-
-    {
-        name:    "github-api-cli",
-        stack:   ["Haskell", "Nix", "GitHub", "Cabal", "BASH"],
-        desc:    [
-            `source code hosted on github at <a href="https://github.com/givikuna/gh-api-cli">https://github.com/givikuna/gh-api-cli</a>`,
-            `github api wrapper as a cli tool written in Haskell`,
-            `more information is in the README.md`,
-        ],
-        section: "FOSS in Progress",
-    },
-
-    {
-        name:    "arkonavt",
-        stack:   ["Odin", "GitHub", "Nix", "JSON", "yt-dlp", "YouTube"],
-        desc:    [
-            `source code hosted on github at <a href="https://github.com/givikuna/arkonavt">https://github.com/givikuna/arkonavt</a>`,
-            `local-first music player platform`,
-            `comes with a TUI and is packaged through a Nix Flake`,
-            `built with Odin and JSON to be fast`,
-        ],
-        section: "FOSS in Progress",
-    },
-
-    {
-        name:    "mwaune",
-        stack:   [
-            "TypeScript",
-            "NPM",
-            "Svelte",
-            "Tauri",
-            "Underscore",
-            "Vite",
-            "Rust",
-            "Ramda",
-            "fp-ts",
-            "Nix",
-        ],
-        desc:    [
-            `source code hosted on github at <a href="https://github.com/givikuna/mwaune">https://github.com/givikuna/mwaune</a>`,
-            "local-first book management application",
-            "built with tauri and svelte",
-            "allows for note taking, reading books, and has a declarative configuration system",
-            "very easily portable (only requires backing up a singular folder)",
-            "simple keyboard-driven ui",
-        ],
-        section: "FOSS in Progress",
-    },
 ];

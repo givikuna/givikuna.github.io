@@ -1,8 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
 import { ProjectItem } from "../types/ProjectItem";
-
 import { getProjectsBySection, renderProjectMarkdown } from "../utils/projects";
 
 const sections: readonly {
@@ -38,10 +36,12 @@ const sections: readonly {
                 id={group.slug}
             >
                 <h1># {group.section}</h1>
-                {group.projects.map((project: ProjectItem) => (
-                    <Fragment set:html={renderProjectMarkdown(project)} />
-                ))}
-                <p style="font-size: 0.85rem;">
+                <div class="projects-grid">
+                    {group.projects.map((project: ProjectItem) => (
+                        <Fragment set:html={renderProjectMarkdown(project)} />
+                    ))}
+                </div>
+                <p style="font-size: 0.85rem; margin-top: 1rem;">
                     <a href="#top">&uarr; back to top</a>
                 </p>
             </section>
