@@ -251,4 +251,24 @@ export const stack_items = [
         home_url:   "https://vite.dev",
         image_path: "vite.png",
     },
+    {
+        title:      "systemd",
+        home_url:   "https://systemd.io/",
+        image_path: "systemd.png",
+    },
+    {
+        title:      "go",
+        home_url:   "https://go.dev/",
+        image_path: "go.png",
+    },
+    {
+        title:      "groovy",
+        home_url:   "https://groovy-lang.org/",
+        image_path: "groovy.png",
+    },
+    {
+        title:      "devenv",
+        home_url:   "https://devenv.sh/",
+        image_path: "devenv.png",
+    },
 ] as const satisfies readonly StackItem[];

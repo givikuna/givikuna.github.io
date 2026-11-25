@@ -6,44 +6,40 @@ export const project_items: ReadonlyArray<ProjectItem> = [
     // ============================================================
 
     {
-        name:    "nixfiles",
-        stack:   [
-            "Nix",
-            "hyprland",
-            "BASH",
-            "fish",
-            "Python",
-            "Lua",
-            "Yggdrasil",
-            "Perl",
-            "Racket",
-            "Terraform",
-            "Elvish",
-        ],
-        summary: "Multi-host NixOS configuration with flakes & home manager",
+        name:    "Ynternals",
+        stack:   ["Nix", "go", "BASH", "systemd", "Linux"],
+        summary:
+            "Secrets Management tool for NixOS systems with symmetric-key encryption written in Go",
         desc:    [
-            "Multi-host nixos configuration with flakes & home manager",
-            "Manages secrets, private and public servers, and various personal computers",
-            "Unit tests many parts of the operating systems through custom scripts",
-            "Many smaller custom scripts written in racket, perl, and python",
-            `Uses various self-made flakes such as <a href="https://github.com/givikuna/gitboy>">gitboy</a> for declarative git repository management and <a href="https://github.com/givikuna/nixtants">nixtants</a> for constants management`,
-            `Has a custom secrets management system through <a href="https://github.com/givikuna/ynternals">the ynternals flake</a>`,
-            "Currently in the process of using terraform to set up the cloud environment declaratively",
-            'source code hosted on github at <a href="https://github.com/givikuna/nixfiles">https://github.com/givikuna/nixfiles</a>',
+            "Declarative, symmetric-key management system for NixOS hosts.",
+            'Uses <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES-256</a> encryption',
+            "Guarantees zero nix-store leakage, memory-only decryption, and path traversal protection",
+            "Spins up a systemd service to actually manage the secrets",
+            "Provides a full NixOS module for configuring and managing the service",
+            `source code hosted on <a href="https://github.com/givikuna/ynternals">GitHub</a>`,
         ],
         section: "FOSS Complete",
     },
 
     {
-        name:    "loid",
-        stack:   ["Nix", "Rust", "git", "GitHub", "JavaScript", "Elvish", "BASH"],
-        summary: "Multi-paradigm programming language implementing Martin-Löf into OOP",
+        name:    "Loid",
+        stack:   [
+            "Nix",
+            "Rust",
+            "git",
+            "GitHub",
+            "JavaScript",
+            "Elvish",
+            "BASH",
+        ],
+        summary:
+            "Multi-paradigm programming language implementing Martin-Löf into OOP",
         desc:    [
             "Multi-paradigm transpile-to-javascript language written in Rust",
             "Loid tries to integrate a Martin-Löf type system into an OOP paradigm",
             "Written in rust and managed via nix flakes",
             "Designed to be batteries-included out of the box, with a large core library and many useful quirks",
-            'Source code hosted on github at <a href="https://github.com/Loid-Project/loid/">https://github.com/Loid-Project/loid/</a>',
+            'Source code hosted on <a href="https://github.com/Loid-Project/loid/">GitHub</a>',
         ],
         section: "FOSS in Progress",
     },
@@ -53,42 +49,52 @@ export const project_items: ReadonlyArray<ProjectItem> = [
     // ============================================================
 
     {
-        name:    "Nixp",
-        stack:   ["Nix", "Odin", "BASH"],
+        name:    "Nixfiles",
+        stack:   [
+            "Nix",
+            "hyprland",
+            "BASH",
+            "fish",
+            "Python",
+            "Lua",
+            "Perl",
+            "Racket",
+        ],
+        summary: "Multi-host NixOS configuration with flakes & home manager",
+        desc:    [
+            "Multi-host nixos configuration with flakes & home manager",
+            "Manages secrets, private and public servers, and various personal computers",
+            "Unit tests many parts of the operating systems through custom scripts",
+            "Many smaller custom scripts written in racket, perl, and python",
+            `Uses various self-made flakes`,
+            'source code hosted on <a href="https://github.com/givikuna/nixfiles">GitHub</a>',
+        ],
+        section: "FOSS Complete",
+    },
+
+    {
+        name:    "AIGest",
+        stack:   ["groovy", "Nix", "BASH", "JSON", "devenv"],
+        summary: "Git repository ingestion tool for LLMs",
+        desc:    [
+            "Git repository ingestion tool for LLMs to read and understand codebases",
+            "Relies on a JSON configuration system to generate an XML file",
+            "Has a profile-based system on repos to generate ingestions of specific parts of the codebase",
+            `source code hosted on <a href="https://github.com/givikuna/aigest">GitHub</a>`,
+        ],
+        section: "FOSS Complete",
+    },
+
+    {
+        name:    "Ysyldur",
+        stack:   ["Nix", "BASH", "Linux"],
         summary:
-            "Lisp-inspired optionally-typed programming programming language that compiles to Nix",
+            "Linux kernel variant, version, scheduler, and general option management flake for NixOS",
         desc:    [
-            "Lisp-inspired language that compiles to pure nix code",
-            "Useable for nix configurations and flakes",
-            "Optionally allows users to use a fully-featured (non Martin-Löf) type system for nix type-safety",
-            "Allows for modular and easy migration from nix",
-            "Written in Odin",
-            `Source code hosted on github at <a href="https://github.com/givikuna/nixp>https://github.com/givikuna/nixp</a>`,
-        ],
-        section: "FOSS Complete",
-    },
-
-    {
-        name:    "ynternals",
-        stack:   ["Nix", "BASH"],
-        summary: "Nix symmetric-key encrypted secrets management solution",
-        desc:    [
-            "A solution for managing secrets declaratively with symmetric keys in NixOS",
-            "Uses AES-256 for symmetrically encrypting secrets for Nix systems",
-            "Does not store the decrypted secrets in the world-readable nix store",
-            "Distributed via a Nix flake",
-            'Source code hosted on github at <a href="https://github.com/givikuna/ynternals">https://github.com/givikuna/ynternals</a>',
-        ],
-        section: "FOSS Complete",
-    },
-
-    {
-        name:    "nixtants",
-        stack:   ["Nix"],
-        summary: "A Nix free-form constants management flake",
-        desc:    [
-            "Clean and portable way to manage free-form structured constants for Nix configurations via flakes",
-            'Source code hosted on github at <a href="https://github.com/givikuna/nixtants">https://github.com/givikuna/nixtants</a>',
+            `Ysyldur is mainly a flake for managing your NixOS kernel configuration`,
+            `It can manage kernel variants, versions, parameters, schedulers, and more`,
+            `Drivers for the GPU, and an integration with Chaotic-Nyx`,
+            `source code hosted on <a href="https://github.com/givikuna/ysyldur">GitHub</a>`,
         ],
         section: "FOSS Complete",
     },

@@ -2,6 +2,8 @@
     "cSpell.words": [
         "arkonavt",
         "codeberg",
+        "devbox",
+        "devenv",
         "direnv",
         "FOSS",
         "frontmatter",
@@ -10,6 +12,7 @@
         "giviko",
         "givikuna",
         "huggingface",
+        "ingestions",
         "leetcode",
         "Loid",
         "mwaune",
@@ -22,10 +25,12 @@
         "Pixelfed",
         "pkgs",
         "purs",
+        "sched",
         "struktured",
         "Tauri",
         "tsvariani",
         "typst",
-        "ynternals"
+        "ynternals",
+        "Ysyldur"
     ]
 }

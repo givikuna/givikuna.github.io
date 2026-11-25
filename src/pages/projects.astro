@@ -19,18 +19,20 @@ const sections: readonly {
     >
         <span class="section-nav-title">jump to section:</span>
         <div class="section-nav-links">
-            {
-                sections.map(
-                    (group: { section: string; slug: string; projects: ProjectItem[] }) => (
-                        <a href={`#${group.slug}`}># {group.section}</a>
-                    ),
-                )
-            }
+            {sections.map(
+                (group: {
+                    section: string;
+                    slug: string;
+                    projects: ProjectItem[];
+                }) => (
+                    <a href={`#${group.slug}`}># {group.section}</a>
+                ),
+            )}
         </div>
     </div>
 
-    {
-        sections.map((group: { section: string; slug: string; projects: ProjectItem[] }) => (
+    {sections.map(
+        (group: { section: string; slug: string; projects: ProjectItem[] }) => (
             <section
                 class="project-section"
                 id={group.slug}
@@ -45,6 +47,6 @@ const sections: readonly {
                     <a href="#top">&uarr; back to top</a>
                 </p>
             </section>
-        ))
-    }
+        ),
+    )}
 </BaseLayout>

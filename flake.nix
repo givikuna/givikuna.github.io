@@ -1,33 +1,47 @@
 {
-  description = "Personal Website for Blogs and CV";
+  description = "Some project using flake-parts";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    mk-script.url = "github:givikuna/nix-mkScript";
   };
 
   outputs =
-    {
-      self,
+    inputs@{
+      flake-parts,
       nixpkgs,
-      flake-utils,
+      mk-script,
+      ...
     }:
-    flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-      {
-        devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            nodejs_latest
-            git
-          ];
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
 
-          shellHook = ''
-            echo "sup"
-          '';
+      perSystem =
+        { pkgs, ... }:
+        let
+          mkScript = mk-script.lib.mkScript pkgs { };
+        in
+        {
+          devShells.default = pkgs.mkShell {
+            packages =
+              (with pkgs; [
+                nodejs_latest
+                git
+                elvish
+              ])
+              ++ [
+                (mkScript "website-build" "scripts/build.elv")
+                (mkScript "website-dev" "scripts/dev.elv")
+                (mkScript "website-preview" "scripts/preview.elv")
+              ];
+          };
         };
-      }
-    );
+    };
 }

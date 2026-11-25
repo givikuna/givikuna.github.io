@@ -14,13 +14,23 @@ const stack_map: Map<StackOption, StackItem> = new Map<StackOption, StackItem>(
 );
 
 export function renderStackTool(title: StackOption): string {
-    const item = stack_map.get(title);
-
-    if (!item) {
-        return `<span class="stack-missing">${title}</span>`;
-    }
-
-    return `<a href="${item.home_url}" class="stack-icon-link" title="${item.title}" target="_blank" rel="noopener noreferrer"><img src="/icons/${item.image_path}" alt="${item.title}" width="30" height="30" loading="lazy" /></a>`;
+    return ((item: StackItem | undefined): string =>
+        !item
+            ? /* HTML */
+              `<span class="stack-missing">${title}</span>`
+            : /* HTML */ `<a
+                  href="${item.home_url}"
+                  class="stack-icon-link"
+                  title="${item.title}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><img
+                      src="/icons/${item.image_path}"
+                      alt="${item.title}"
+                      width="30"
+                      height="30"
+                      loading="lazy"
+              /></a>`)(stack_map.get(title));
 }
 
 export function renderStackRow(stack: readonly StackOption[]): string {
@@ -28,10 +38,12 @@ export function renderStackRow(stack: readonly StackOption[]): string {
 }
 
 export function renderProjectMarkdown(project: ProjectItem): string {
-    const iconsHtml = renderStackRow(project.stack);
-    const bulletsHtml = project.desc.map((line) => `<p>${marked.parseInline(line)}</p>`).join("\n");
+    const iconsHtml: string = renderStackRow(project.stack);
+    const bulletsHtml: string = project.desc
+        .map((line) => `<p>${marked.parseInline(line)}</p>`)
+        .join("\n");
 
-    const stackText = project.stack.join(", ");
+    const stackText: string = project.stack.join(", ");
 
     return `
         <article class="project-card" id="project-${slugify(project.name)}">
@@ -54,7 +66,8 @@ export function renderCompactProjectMarkdown(project: ProjectItem): string {
 
     const stackLimit = 4;
     const stackList = project.stack.slice(0, stackLimit);
-    const stackText = stackList.join(", ") + (project.stack.length > stackLimit ? ", +" : "");
+    const stackText =
+        stackList.join(", ") + (project.stack.length > stackLimit ? ", +" : "");
 
     return `
         <article class="project-card compact">
@@ -74,16 +87,19 @@ export function renderCompactProjectMarkdown(project: ProjectItem): string {
 export function getProjectsBySection(
     projects: ReadonlyArray<ProjectItem> = project_items,
 ): ReadonlyArray<{ section: string; slug: string; projects: ProjectItem[] }> {
-    const groups = new Map<string, ProjectItem[]>();
+    const groups: Map<string, ProjectItem[]> = new Map<string, ProjectItem[]>();
 
-    for (const project of projects) {
-        const existing = groups.get(project.section);
-        if (existing) {
-            existing.push(project);
-        } else {
-            groups.set(project.section, [project]);
-        }
-    }
+    projects.forEach(
+        (project: ProjectItem): number | Map<string, ProjectItem[]> =>
+            ((
+                existing: ProjectItem[] | undefined,
+            ): number | Map<string, ProjectItem[]> =>
+                existing
+                    ? existing.push(project)
+                    : groups.set(project.section, [project]))(
+                groups.get(project.section),
+            ),
+    );
 
     return Array.from(groups.entries()).map(([section, items]) => ({
         section,

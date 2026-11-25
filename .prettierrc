@@ -1,7 +1,7 @@
 {
     "plugins": ["prettier-plugin-svelte", "@huggingface/prettier-plugin-vertical-align"],
     "tabWidth": 4,
-    "printWidth": 100,
+    "printWidth": 80,
     "semi": true,
     "trailingComma": "all",
     "bracketSpacing": true,

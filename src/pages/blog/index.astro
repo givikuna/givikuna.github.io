@@ -3,11 +3,14 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 import { sortPostsByDate, type BlogPostModule } from "../../utils/blog";
 
-const postImports: Record<string, BlogPostModule> = import.meta.glob<BlogPostModule>("./*.md", {
-    eager: true,
-});
+const postImports: Record<string, BlogPostModule> =
+    import.meta.glob<BlogPostModule>("./*.md", {
+        eager: true,
+    });
 
-const posts: ReadonlyArray<BlogPostModule> = sortPostsByDate(Object.values(postImports));
+const posts: ReadonlyArray<BlogPostModule> = sortPostsByDate(
+    Object.values(postImports),
+);
 ---
 
 <BaseLayout title="Blog">
@@ -19,26 +22,27 @@ const posts: ReadonlyArray<BlogPostModule> = sortPostsByDate(Object.values(postI
 
     <hr />
 
-    {
-        posts.length === 0 ? (
-            <p>No posts published yet.</p>
-        ) : (
-            <ul>
-                {posts.map((post: BlogPostModule) => (
-                    <li style="margin-bottom: 1.25rem;">
-                        <a
-                            href={post.url}
-                            style="font-size: 1.15rem; font-weight: bold;"
-                        >
-                            {post.frontmatter.title}
-                        </a>
-                        <span style="color: var(--fg4);"> &mdash; {post.frontmatter.pubDate}</span>
-                        <p style="margin: 0.25rem 0 0 0; color: var(--fg2);">
-                            {post.frontmatter.description}
-                        </p>
-                    </li>
-                ))}
-            </ul>
-        )
-    }
+    {posts.length === 0 ? (
+        <p>No posts published yet.</p>
+    ) : (
+        <ul>
+            {posts.map((post: BlogPostModule) => (
+                <li style="margin-bottom: 1.25rem;">
+                    <a
+                        href={post.url}
+                        style="font-size: 1.15rem; font-weight: bold;"
+                    >
+                        {post.frontmatter.title}
+                    </a>
+                    <span style="color: var(--fg4);">
+                        {" "}
+                        &mdash; {post.frontmatter.pubDate}
+                    </span>
+                    <p style="margin: 0.25rem 0 0 0; color: var(--fg2);">
+                        {post.frontmatter.description}
+                    </p>
+                </li>
+            ))}
+        </ul>
+    )}
 </BaseLayout>

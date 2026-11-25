@@ -9,25 +9,23 @@ import { social_items } from "../data/social";
     <p>where to find me across the web:</p>
 
     <div class="social-grid">
-        {
-            social_items.map((item: SocialItem) => (
-                <a
-                    href={item.url}
-                    class="social-square"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <img
-                        src={`/icons/${item.icon}`}
-                        alt={item.platform}
-                        loading="lazy"
-                    />
-                    <div class="social-text">
-                        <span class="platform-name">{item.platform}</span>
-                        <span class="platform-handle">{item.handle}</span>
-                    </div>
-                </a>
-            ))
-        }
+        {social_items.map((item: SocialItem) => (
+            <a
+                href={item.url}
+                class="social-square"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    src={`/icons/${item.icon}`}
+                    alt={item.platform}
+                    loading="lazy"
+                />
+                <div class="social-text">
+                    <span class="platform-name">{item.platform}</span>
+                    <span class="platform-handle">{item.handle}</span>
+                </div>
+            </a>
+        ))}
     </div>
 </BaseLayout>

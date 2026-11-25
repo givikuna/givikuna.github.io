@@ -52,14 +52,19 @@ const pageDesc: string = frontmatter?.description ?? description;
         />
     </head>
     <body>
-        <div class={`layout-wrapper ${navPosition === "side" ? "nav-side" : ""}`}>
+        <div
+            class={`layout-wrapper ${navPosition === "side" ? "nav-side" : ""}`}
+        >
             <Navbar />
             <main>
                 <slot />
             </main>
         </div>
         <footer>
-            <span>givikuna.github.io &mdash; static HTML &bull; <a href="/rss.xml">RSS</a></span>
+            <span>
+                givikuna.github.io &mdash; static HTML &bull;{" "}
+                <a href="/rss.xml">RSS</a>
+            </span>
         </footer>
     </body>
 </html>
